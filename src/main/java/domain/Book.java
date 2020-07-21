@@ -23,19 +23,13 @@ public class Book extends Product {
         this.author = author;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        if (!super.equals(o)) return false;
-//        Book book = (Book) o;
-//        return pages == book.pages &&
-//                publishedYear == book.publishedYear &&
-//                Objects.equals(author, book.author);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(super.hashCode(), author, pages, publishedYear);
-//    }
+      @Override
+    public boolean matches(String search){
+        if (super.matches(search)) return true;
+         else if (author.equalsIgnoreCase(search)) {
+              return true;
+          }
+          else return false;
+        }
+
 }
