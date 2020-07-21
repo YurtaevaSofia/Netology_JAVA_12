@@ -5,8 +5,8 @@ import repository.ProductRepository;
 public class ProductManager {
     private ProductRepository repository;
 
-    public ProductManager() {
-    }
+//    public ProductManager() {
+//    }
 
     public ProductManager(ProductRepository repository) {
         this.repository = repository;
@@ -28,7 +28,7 @@ public class ProductManager {
         int i = 0;
         for (Product item : items){
             if(matches(item, text)){
-                searchResult[0] = item;
+                searchResult[i] = item;
                 i++;
             }
         }
@@ -44,7 +44,6 @@ public class ProductManager {
             if (book.getAuthor().equalsIgnoreCase(search)) {
                 return true;
             }
-            return false;
         }
         if (product instanceof Smartphone) {
             Smartphone smartphone = (Smartphone) product;
