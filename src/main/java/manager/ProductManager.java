@@ -1,12 +1,12 @@
-package domain;
+package manager;
 
+import domain.Book;
+import domain.Product;
+import domain.Smartphone;
 import repository.ProductRepository;
 
 public class ProductManager {
     private ProductRepository repository;
-
-//    public ProductManager() {
-//    }
 
     public ProductManager(ProductRepository repository) {
         this.repository = repository;
@@ -19,15 +19,14 @@ public class ProductManager {
     public Product[] searchBy(String text) {
         Product [] items = repository.findAll();
         int numberOfItemsFound = 0;
-        for (Product item : items){
-            if(matches(item, text)){
-                numberOfItemsFound++;
-            }
-        }
         Product [] searchResult = new Product[numberOfItemsFound];
         int i = 0;
         for (Product item : items){
             if(matches(item, text)){
+                numberOfItemsFound++;
+                Product [] tmp = new Product[numberOfItemsFound];
+                System.arraycopy(searchResult, 0, tmp, 0, searchResult.length);
+                searchResult = tmp;
                 searchResult[i] = item;
                 i++;
             }
